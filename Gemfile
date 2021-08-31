@@ -61,5 +61,5 @@ gem 'pry-rails'
 # (5.30 新規追加 応用カリキュラム2)
 
 gem 'devise'
-
+gem 'rails-i18n'
 

@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
 
   def index
     # @tweets = Tweet.includes(:user).order("created_at DESC")
-    query = "SELECT * FROM tweers"
+    query = "SELECT * FROM tweets"
     @tweets = Tweet.find_by_sql(query)
   end
 
@@ -13,8 +13,14 @@ class TweetsController < ApplicationController
   end
 
   def create
-    # binding.pry (6.4デバッグ)
-    Tweet.create(tweet_params)
+    # Tweet.create(tweet_params) 8/31エラーメッセージ日本語化
+    @tweet = Tweet.new(tweet_params)
+    if @tweet.valid?
+      @tweet.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def destroy
